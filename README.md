@@ -17,5 +17,7 @@ When a visitor come to site he will initially see the youtube video thumbnail an
 
 When a valid coupon is entered then in admin under coupons->coupons it will show coupon status as "Used" and Coupon used date along with on which video that coupon used.
 
+Youtube video can be used on any page/post by using short code [show_video id='1'] here 1 is video id which will be replaced with your id.
+
 
 # Admin can delete any coupon in bulk either by expiry date, or individual
