@@ -129,22 +129,21 @@ function easy_coupons_activate(){
 
 // Create youtube table
 
-    $tab_youtube=$table_prefix.'easy_couppons_youtube';
-    $sql_youtube="CREATE TABLE $tab_youtube (
+  $tab_youtube=$table_prefix.'easy_couppons_youtube';
+  $sql_youtube="CREATE TABLE $tab_youtube (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `video_url` text NULL DEFAULT NULL,
   `video_image_url` text NULL DEFAULT NULL,
-  'expire_date' date NULL NULL, 
-  `created_date` date NULL DEFAULT curdate(),
+  `expire_date` date NULL, 
+  `created_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
    
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4";
 
-    $wpdb->query($sql_youtube);
+      $wpdb->query($sql_youtube);
 
 
 }
-
 
 function coupons_listing(){
  include('listing.php');
@@ -206,7 +205,6 @@ add_action('wp_ajax_nopriv_add_youtube_video', 'add_youtube_video');
 
 function add_youtube_video()
 {
-
     $json_res = array();
     if(isset($_POST['add_video_url_info']) && trim($_POST['add_video_url_info'])== ''){
 
@@ -237,9 +235,6 @@ function add_youtube_video()
                 $json_res['success'] = true;
             } 
     }
-    
-
-
   print(json_encode($json_res));  
   die;
 }
