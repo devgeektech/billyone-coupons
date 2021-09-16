@@ -145,6 +145,34 @@ function easy_coupons_activate(){
 
 }
 
+
+
+
+// DELETE table on deactivation of plugin
+
+
+function delete_easy_coupons_table() {
+    global $wpdb;
+    global $table_prefix;
+    $easy_couppons = $table_prefix.'easy_couppons';
+    $easy_couppons_invalid = $table_prefix.'easy_couppons_invalid';
+    $easy_couppons_youtube = $table_prefix.'easy_couppons_youtube';
+
+    $sql_easy_couppons = "DROP TABLE IF EXISTS ".$easy_couppons;
+    $wpdb->query($sql_easy_couppons);
+
+    $sql_easy_couppons_invalid = "DROP TABLE IF EXISTS ".$easy_couppons_invalid;
+    $wpdb->query($sql_easy_couppons_invalid);
+
+    $sql_easy_couppons_youtube = "DROP TABLE IF EXISTS ".$easy_couppons_youtube;
+    $wpdb->query($sql_easy_couppons_youtube);
+    
+}
+register_deactivation_hook( __FILE__, 'delete_easy_coupons_table' );
+
+
+// END
+
 function coupons_listing(){
  include('listing.php');
 }
